@@ -1,5 +1,18 @@
+# OS Detection
+platform='unknown'
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+   platform='linux'
+elif [[ "$unamestr" == 'FreeBSD' ]]; then
+   platform='freebsd'
+fi
+
 # Custom Aliases
-alias ll='ls -alGF'
+if [[ $platform == 'linux' ]]; then
+    alias ll='ls -alF --color=auto'
+elif [[ $platform == 'freebsd' ]]; then
+    alias ll='ls -alGF'
+fi
 alias grep='grep --color=auto --line-buffered'
 alias ssh='sshdot'
 alias sudo='sudo -E'
