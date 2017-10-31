@@ -33,6 +33,9 @@ set encoding=utf-8
 if has('nvim')
     " Neomake Settings
     let g:neomake_python_enabled_makers = ['flake8']
+    if findfile('build.gradle', '.;') !=# ''
+      let g:neomake_java_enabled_makers = ['gradle']
+    endif
     autocmd BufWritePost,BufEnter * Neomake  " run NeoMake on save
 else
     " Syntastic Settings
@@ -70,6 +73,9 @@ let g:ctrlp_match_window_reversed = 0
 syntax on
 colorscheme molokai
 let g:rehash256 = 1
+
+" Use groovy highlighting for Jenkinsfiles
+au BufNewFile,BufRead Jenkinsfile setf groovy
 
 
 " Easy viewing of multiple files? Why not!
