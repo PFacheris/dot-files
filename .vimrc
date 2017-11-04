@@ -3,6 +3,7 @@ let rtp_prefix=exists('$SSHHOME')?expand($SSHHOME.'/.sshdot.d'):expand($HOME)
 call plug#begin(rtp_prefix.'/.vim/plugged')
 
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/tpope-vim-abolish'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/promptline.vim'
