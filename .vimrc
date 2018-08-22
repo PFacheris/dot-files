@@ -57,6 +57,14 @@ let g:airline_theme = 'powerlineish'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
 
+" Promptline Settings
+let g:promptline_preset = {
+    \'a' : [ promptline#slices#host({ 'only_if_ssh': 1 }) ],
+    \'b' : [ promptline#slices#user(), '\t' ],
+    \'c' : [ promptline#slices#python_virtualenv(), '$(kube_ps1)' ],
+    \'z' : [ promptline#slices#cwd({ 'dir_limit': 2 }), promptline#slices#vcs_branch() ],
+    \'warn' : [ promptline#slices#last_exit_code() ]}
+
 " Ctrl-P Settings
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip   " MacOSX/Linux
 let g:ctrlp_custom_ignore = {

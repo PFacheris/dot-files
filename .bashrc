@@ -48,10 +48,16 @@ export PATH="$PATH:/usr/sbin"
 export PATH="$PATH:/usr/sbin:/usr/share/apache-maven/bin"
 
 # Source PS1
+KUBE_PS1_PREFIX=''
+KUBE_PS1_SUFFIX=''
+KUBE_PS1_SYMBOL_COLOR='white'
+KUBE_PS1_CTX_COLOR='white'
+KUBE_PS1_NS_COLOR='white'
 POWERLINE_HOME=$HOME
 if [ ! -z ${SSHHOME+x} ]; then
     POWERLINE_HOME=$SSHHOME/.sshdot.d;
 fi
+source $POWERLINE_HOME/.powerline_kube
 source $POWERLINE_HOME/.powerline
 
 # Load z
