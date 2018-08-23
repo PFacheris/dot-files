@@ -59,6 +59,7 @@ if [ ! -z ${SSHHOME+x} ]; then
 fi
 source $POWERLINE_HOME/.powerline_kube
 source $POWERLINE_HOME/.powerline
+kubeoff
 
 # Load z
 Z_PATH=$HOME/.sshdot.d
