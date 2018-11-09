@@ -46,6 +46,7 @@ export IRC_PASS="appnexus.1Vq19NcvBrz0dt6PJ3jo"
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export PATH="$PATH:/usr/sbin"
 export PATH="$PATH:/usr/sbin:/usr/share/apache-maven/bin"
+export PATH="$PATH:~/.local/bin/"
 
 # Source PS1
 KUBE_PS1_PREFIX=''
