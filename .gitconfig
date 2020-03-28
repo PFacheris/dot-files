@@ -3,7 +3,7 @@
 [user]
 	name = Patrick Facheris
 	mail = pfacheris@appnexus.com
-	email = pfacheris@appnexus.com
+	email = patrick.facheris@xandr.com
 [alias]
     st = status -s
     co = checkout
@@ -22,3 +22,8 @@
     pr = pull --rebase
 [push]
 	default = simple
+
+[url "ssh://git@stash.corp.appnexus.com:7999/"]
+	insteadOf = https://stash.corp.appnexus.com/
+[url "git@github.com:"]
+	insteadOf = https://github.com/
