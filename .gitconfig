@@ -2,8 +2,7 @@
     excludesfile = ~/.gitignore_global
 [user]
 	name = Patrick Facheris
-	mail = pfacheris@appnexus.com
-	email = patrick.facheris@xandr.com
+	email = plfacheris@gmail.com
 [alias]
     st = status -s
     co = checkout
@@ -25,5 +24,13 @@
 
 [url "ssh://git@stash.corp.appnexus.com:7999/"]
 	insteadOf = https://stash.corp.appnexus.com/
+[url "ssh://git@stash.corp.appnexus.com:7999/"]
+	insteadOf = https://stash.corp.appnexus.com/scm/
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+
+[includeIf "gitdir:~/Documents/Work/Xandr/"]
+    path = ~/Documents/Work/Xandr/.gitconfig_include
+
+[includeIf "gitdir:~/Documents/Work/Uneebo/"]
+    path = ~/Documents/Work/Uneebo/.gitconfig_include

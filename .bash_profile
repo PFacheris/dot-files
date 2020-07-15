@@ -8,6 +8,7 @@ fi
 test -e ${HOME}/.iterm2_shell_integration.bash && source ${HOME}/.iterm2_shell_integration.bash
 
 export DOCKER_HOST='unix:///var/run/docker.sock'
+export PATH="$PATH:~/go/bin"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/pfacheris/.sdkman"

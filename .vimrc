@@ -9,6 +9,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/promptline.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'google/vim-jsonnet'
+Plug 'iloginow/vim-stylus'
 if has('nvim')
     Plug 'neomake/neomake'
 else
