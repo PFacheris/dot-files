@@ -1,15 +1,15 @@
 [submodule "powerlevel10k"]
 	path = powerlevel10k
-	url = /Users/pfacheris/.oh-my-zsh-custom/themes/powerlevel10k
+	url = git@github.com:romkatv/powerlevel10k.git
 [submodule "zsh-autosuggestions"]
 	path = zsh-autosuggestions
-	url = /Users/pfacheris/.oh-my-zsh-custom/plugins/zsh-autosuggestions
+	url = git@github.com:zsh-users/zsh-autosuggestions
 [submodule "zsh-histdb"]
 	path = zsh-histdb
-	url = /Users/pfacheris/.oh-my-zsh-custom/plugins/zsh-histdb
+	url = git@github.com:larkery/zsh-histdb
 [submodule "zsh-history-substring-search"]
 	path = zsh-history-substring-search
-	url = /Users/pfacheris/.oh-my-zsh-custom/plugins/zsh-history-substring-search/
+	url = git@github.com:zsh-users/zsh-history-substring-search
 [submodule "zsh-syntax-highlighting"]
 	path = zsh-syntax-highlighting
-	url = /Users/pfacheris/.oh-my-zsh-custom/plugins/zsh-syntax-highlighting/
+	url = git@github.com:zsh-users/zsh-syntax-highlighting
