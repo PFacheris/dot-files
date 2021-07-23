@@ -21,4 +21,5 @@
 !.tmux.conf
 !.vim
 .vim/plugged
+.vim/.netrwhist
 !.vimrc

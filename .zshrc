@@ -10,6 +10,7 @@ fi
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/pfacheris/.oh-my-zsh"
+export ZSH_CUSTOM="/Users/pfacheris/.oh-my-zsh-custom"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -128,5 +129,3 @@ typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
-export PATH="/usr/local/opt/mysql-client@5.7/bin:$PATH"
-export PATH="/usr/local/opt/node@10/bin:$PATH"
