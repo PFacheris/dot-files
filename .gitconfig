@@ -29,8 +29,5 @@
 [url "git@github.com:"]
 	insteadOf = https://github.com/
 
-[includeIf "gitdir:~/Documents/Work/Xandr/"]
-    path = ~/Documents/Work/Xandr/.gitconfig_include
-
-[includeIf "gitdir:~/Documents/Work/Uneebo/"]
-    path = ~/Documents/Work/Uneebo/.gitconfig_include
+[init]
+	defaultBranch = master

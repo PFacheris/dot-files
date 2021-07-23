@@ -4,16 +4,20 @@ call plug#begin(rtp_prefix.'/.vim/plugged')
 
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/tpope-vim-abolish'
+Plug 'tpope/vim-eunuch'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/promptline.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'google/vim-jsonnet'
 Plug 'iloginow/vim-stylus'
+Plug 'posva/vim-vue'
+Plug 'jparise/vim-graphql'
+Plug 'tomlion/vim-solidity'
 if has('nvim')
     Plug 'neomake/neomake'
 else
-    Plug 'Syntastic'
+    Plug 'vim-scripts/Syntastic'
 endif
 
 " Initialize plugin system
@@ -35,11 +39,11 @@ set encoding=utf-8
 " Neovim Specific Configuration
 if has('nvim')
     " Neomake Settings
-    let g:neomake_python_enabled_makers = ['flake8']
+    let g:neomake_python_enabled_makers = ['pep8']
     if findfile('build.gradle', '.;') !=# ''
       let g:neomake_java_enabled_makers = ['gradle']
     endif
-    autocmd BufWritePost,BufEnter * Neomake  " run NeoMake on save
+    call neomake#configure#automake('w')
 else
     " Syntastic Settings
     let g:syntastic_enable_signs=1
