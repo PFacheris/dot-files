@@ -14,4 +14,4 @@ Thumbs.db
 
 # Python Virtualenvs #
 ######################
-venv
+.venv
