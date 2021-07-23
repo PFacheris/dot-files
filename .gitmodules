@@ -1,0 +1,15 @@
+[submodule "powerlevel10k"]
+	path = powerlevel10k
+	url = /Users/pfacheris/.oh-my-zsh-custom/themes/powerlevel10k
+[submodule "zsh-autosuggestions"]
+	path = zsh-autosuggestions
+	url = /Users/pfacheris/.oh-my-zsh-custom/plugins/zsh-autosuggestions
+[submodule "zsh-histdb"]
+	path = zsh-histdb
+	url = /Users/pfacheris/.oh-my-zsh-custom/plugins/zsh-histdb
+[submodule "zsh-history-substring-search"]
+	path = zsh-history-substring-search
+	url = /Users/pfacheris/.oh-my-zsh-custom/plugins/zsh-history-substring-search/
+[submodule "zsh-syntax-highlighting"]
+	path = zsh-syntax-highlighting
+	url = /Users/pfacheris/.oh-my-zsh-custom/plugins/zsh-syntax-highlighting/
