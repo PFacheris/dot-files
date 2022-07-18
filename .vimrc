@@ -2,7 +2,6 @@
 let rtp_prefix=exists('$SSHHOME')?expand($SSHHOME.'/.sshdot.d'):expand($HOME)
 call plug#begin(rtp_prefix.'/.vim/plugged')
 
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/tpope-vim-abolish'
 Plug 'tpope/vim-eunuch'
 Plug 'vim-airline/vim-airline'
@@ -15,9 +14,16 @@ Plug 'posva/vim-vue'
 Plug 'jparise/vim-graphql'
 Plug 'tomlion/vim-solidity'
 if has('nvim')
-    Plug 'neomake/neomake'
+    Plug 'dense-analysis/ale'
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+    " Telescope Settings
+    nnoremap <C-p> <cmd>Telescope find_files<cr>
+    nnoremap <C-g> <cmd>Telescope live_grep<cr>
 else
     Plug 'vim-scripts/Syntastic'
+    Plug 'ctrlpvim/ctrlp.vim'
 endif
 
 " Initialize plugin system
@@ -36,14 +42,14 @@ set encoding=utf-8
 
 " Plugin Configuration
 
-" Neovim Specific Configuration
 if has('nvim')
-    " Neomake Settings
-    let g:neomake_python_enabled_makers = ['pep8']
-    if findfile('build.gradle', '.;') !=# ''
-      let g:neomake_java_enabled_makers = ['gradle']
-    endif
-    call neomake#configure#automake('w')
+    let g:ale_completion_enabled = 1
+    let g:ale_fixers = {
+    \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+    \   'yaml': ['prettier', 'yamlfix'],
+    \   'go': ['gofmt', 'goimports', 'golines'],
+    \}
+    let g:ale_fix_on_save = 1
 else
     " Syntastic Settings
     let g:syntastic_enable_signs=1
@@ -55,6 +61,15 @@ else
     let g:syntastic_style_warning_symbol = '≈'
     let g:syntastic_error_symbol = '✗'
     let g:syntastic_warning_symbol = '⚠'
+    " Ctrl-P Settings
+    let g:ctrlp_custom_ignore = {
+        \ 'dir':  '\.git$\|\.hg$\|\.svn$\|node_modules',
+        \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\|\.DS_Store'
+        \ }
+    let g:ctrlp_follow_symlinks = 1
+    let g:ctrlp_match_window_bottom = 0
+    let g:ctrlp_match_window_reversed = 0
+
 endif
 
 " Airline Settings
@@ -62,6 +77,7 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme = 'powerlineish'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
+let g:airline#extensions#ale#enabled = 1
 
 " Promptline Settings
 let g:promptline_preset = {
@@ -71,15 +87,8 @@ let g:promptline_preset = {
     \'z' : [ promptline#slices#cwd({ 'dir_limit': 2 }), promptline#slices#vcs_branch() ],
     \'warn' : [ promptline#slices#last_exit_code() ]}
 
-" Ctrl-P Settings
+" Ignore certain file types
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip   " MacOSX/Linux
-let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\.git$\|\.hg$\|\.svn$\|node_modules',
-    \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\|\.DS_Store'
-    \ }
-let g:ctrlp_follow_symlinks = 1
-let g:ctrlp_match_window_bottom = 0
-let g:ctrlp_match_window_reversed = 0
 
 " Make sure I can spell
 " set spell spelllang=en_us

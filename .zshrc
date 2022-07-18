@@ -127,5 +127,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+# Set up direnv
+eval "$(direnv hook zsh)"
+
+[[ -s "/Users/pfacheris/.gvm/scripts/gvm" ]] && source "/Users/pfacheris/.gvm/scripts/gvm"

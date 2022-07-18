@@ -1,8 +1,10 @@
 [core]
     excludesfile = ~/.gitignore_global
+
 [user]
 	name = Patrick Facheris
-	email = plfacheris@gmail.com
+	email = patrick.facheris@aprime.io
+
 [alias]
     st = status -s
     co = checkout
@@ -19,8 +21,13 @@
     nuke = !sh -c 'git branch -d $1 && git push origin :$1' -
     fnuke = !sh -c 'git branch -D $1 && git push origin :$1' -
     pr = pull --rebase
+
 [push]
 	default = simple
+
+[pull]
+	rebase = false
+    ff = only
 
 [url "git@github.com:"]
 	insteadOf = https://github.com/
