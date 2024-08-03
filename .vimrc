@@ -7,7 +7,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/promptline.vim'
-Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter', { 'branch': 'main' }
 Plug 'google/vim-jsonnet'
 Plug 'iloginow/vim-stylus'
 Plug 'posva/vim-vue'

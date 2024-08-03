@@ -9,8 +9,8 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/pfacheris/.oh-my-zsh"
-export ZSH_CUSTOM="/Users/pfacheris/.oh-my-zsh-custom"
+export ZSH="$HOME/.oh-my-zsh"
+export ZSH_CUSTOM="$HOME/.oh-my-zsh-custom"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -115,12 +115,6 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init --path)"
-fi
-
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -129,5 +123,3 @@ typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
 # Set up direnv
 eval "$(direnv hook zsh)"
-
-[[ -s "/Users/pfacheris/.gvm/scripts/gvm" ]] && source "/Users/pfacheris/.gvm/scripts/gvm"
