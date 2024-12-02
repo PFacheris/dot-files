@@ -117,9 +117,18 @@ fi
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+# Set up homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
 # Set up direnv
 eval "$(direnv hook zsh)"
+
+# xenv - run a command with environment variables from a file
+xenv() { (set -a && source "$1" && shift && "$@"); }
+
+# Set up asdf
+. /opt/homebrew/opt/asdf/libexec/asdf.sh

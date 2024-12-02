@@ -33,4 +33,4 @@
 	insteadOf = https://github.com/
 
 [init]
-	defaultBranch = master
+	defaultBranch = main

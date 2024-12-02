@@ -8,16 +8,16 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/promptline.vim'
 Plug 'airblade/vim-gitgutter', { 'branch': 'main' }
-Plug 'google/vim-jsonnet'
-Plug 'iloginow/vim-stylus'
-Plug 'posva/vim-vue'
 Plug 'jparise/vim-graphql'
-Plug 'tomlion/vim-solidity'
+Plug 'amadeus/vim-mjml'
+Plug 'hashivim/vim-terraform'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'github/copilot.vim', {'branch': 'release'}
 if has('nvim')
-    Plug 'dense-analysis/ale'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'nvim-lua/plenary.nvim'
-    Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+    Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.4' }
     " Telescope Settings
     nnoremap <C-p> <cmd>Telescope find_files<cr>
     nnoremap <C-g> <cmd>Telescope live_grep<cr>
@@ -37,30 +37,21 @@ set t_Co=256
 " utf-8 encoding baby!
 set encoding=utf-8
 
+set nobackup
+set nowritebackup
+set updatetime=300
+set signcolumn=yes
+
 " Snappy
 :set ttyfast
 
 " Plugin Configuration
 
+
 if has('nvim')
-    let g:ale_completion_enabled = 1
-    let g:ale_fixers = {
-    \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-    \   'yaml': ['prettier', 'yamlfix'],
-    \   'go': ['gofmt', 'goimports', 'golines'],
-    \}
-    let g:ale_fix_on_save = 1
+    " coc Settings
+    inoremap <silent><expr> <c-space> coc#refresh()
 else
-    " Syntastic Settings
-    let g:syntastic_enable_signs=1
-    let g:syntastic_check_on_open = 1
-    let g:syntastic_check_on_wq = 0
-    let g:syntastic_echo_current_error=1
-    let g:syntastic_python_checkers=['flake8']
-    let g:syntastic_style_error_symbol = '✠'
-    let g:syntastic_style_warning_symbol = '≈'
-    let g:syntastic_error_symbol = '✗'
-    let g:syntastic_warning_symbol = '⚠'
     " Ctrl-P Settings
     let g:ctrlp_custom_ignore = {
         \ 'dir':  '\.git$\|\.hg$\|\.svn$\|node_modules',
@@ -69,7 +60,6 @@ else
     let g:ctrlp_follow_symlinks = 1
     let g:ctrlp_match_window_bottom = 0
     let g:ctrlp_match_window_reversed = 0
-
 endif
 
 " Airline Settings
@@ -77,7 +67,7 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme = 'powerlineish'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
-let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#coc#enabled = 1
 
 " Promptline Settings
 let g:promptline_preset = {
@@ -86,6 +76,50 @@ let g:promptline_preset = {
     \'c' : [ promptline#slices#python_virtualenv(), '$(kube_ps1)' ],
     \'z' : [ promptline#slices#cwd({ 'dir_limit': 2 }), promptline#slices#vcs_branch() ],
     \'warn' : [ promptline#slices#last_exit_code() ]}
+
+" yats.vim Settings
+set re=0
+
+" coc Settings
+let g:coc_global_extensions = ['coc-yaml', 'coc-json', 'coc-go', 'coc-pyright', 'coc-eslint', 'coc-copilot']
+
+" Use tab for trigger completion with characters ahead and navigate
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call ShowDocumentation()<CR>
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming
+nmap <leader>rn <Plug>(coc-rename)
 
 " Ignore certain file types
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip   " MacOSX/Linux
@@ -170,12 +204,8 @@ function TabsOrSpaces()
     endif
 endfunction
 
-" Remove trailing whitespace from python files on write
-autocmd BufWritePre *.py :%s/\s\+$//e
-
 " Call the function after opening a buffer
 autocmd BufReadPost * call TabsOrSpaces()
-
 
 " This shows what you are typing as a command.
 set showcmd
